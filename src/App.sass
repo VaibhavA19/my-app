@@ -1,0 +1,45 @@
+$female: deeppink
+$male: #3498db
+*
+  box-sizing: border-box  
+
+.App
+  background: #5900b3
+  padding: 10px 
+  width: 100%
+  overflow: hidden
+
+
+.MyInput
+  height: 50px 
+  margin: 10px
+  width: calc(100% - 40px)
+  padding: 10px
+  font-size: 30px 
+  font-family: monospace
+
+li
+  display: inline-block 
+  padding: 5px
+  margin: 2px  
+  border-radius: 3px
+  list-style: none
+  background-color: yellow 
+  &.male
+    color: darken($male,30)
+    background-color: $male
+    &:hover
+      background-color: lighten($male,20)
+  &.female
+    color: darken($female,30)
+    background-color: $female
+    &:hover
+      background-color: lighten($female,20)
+
+ul
+  padding: 0px
+
+#authlist
+  padding: 5px 
+  width: calc(100% - 10px)
+  margin: 5px
