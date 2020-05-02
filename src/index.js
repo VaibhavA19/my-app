@@ -814,7 +814,7 @@ const PEOPLE = [
 ]
 ReactDOM.render(
   <React.StrictMode>
-    <App data={PEOPLE}/>
+    <App data={PEOPLE} />
   </React.StrictMode>,
   document.getElementById('root')
 );
