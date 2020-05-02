@@ -4,14 +4,19 @@ import NameList from './components/NameList.js';
 
 function App(props) {
   const [state,setState] = React.useState({
+                                             data: props.data,
                                              filterText: '',
                                              favourites: []
                                           });
 
   const addFavourite = (favourite) => {
+    let idx = state.data.map(obj => obj.id).indexOf( favourite.id );
+    let newData = [...state.data.slice(0,idx), ...state.data.slice(idx+1)] ;
     state.favourites.push(favourite);
+    
     setState({
-      filterText: state.filterText,
+      filterText: '',
+      data: newData,
       favourites: [...state.favourites]
     });
   }
@@ -19,7 +24,9 @@ function App(props) {
   const deleteFavourite = (favourite) => {
     let idx = state.favourites.map(obj => obj.id).indexOf( favourite.id );
     let newFavourites = [...state.favourites.slice(0,idx), ...state.favourites.slice(idx+1)] ;
+    state.data.push(favourite);
     setState({
+      data: [...state.data],
       filterText: state.filterText,
       favourites: newFavourites
     });
@@ -29,6 +36,7 @@ function App(props) {
      state.filterText = event.target.value ;
      setState({
        filterText: event.target.value,
+       data: state.data,
        favourites: state.favourites
      });
   }
@@ -45,7 +53,7 @@ function App(props) {
       </div>
     }
     <div id="authlist">
-      <NameList data= {props.data} filterText= {state.filterText} onItemClick={addFavourite}/>
+      <NameList data= {state.data} filterText= {state.filterText} onItemClick={addFavourite}/>
     </div>
     </>
   );
